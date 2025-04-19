@@ -128,7 +128,8 @@
 
                 this.centerDialogVisible = true
                 this.$nextTick(()=>{
-                    this.resetForm()
+                    this.resetForm();
+                    this.form.id = null; // 显式清空 id
                 })
 
             },
