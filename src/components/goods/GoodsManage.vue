@@ -36,17 +36,18 @@
       <el-table-column  fixed prop="id" label="ID" width="60">
       </el-table-column>
       <!-- 临期提醒列 -->
-      <el-table-column label="临期提醒" width="100">
+      <el-table-column label="临期提醒" width="100" align="center">
         <template slot-scope="scope">
-          <i v-if="scope.row.isNearExpiry" class="el-icon-warning" style="color: red;"></i>
-          <i v-else class="el-icon-success" style="color: green;"></i>
+          <i v-if="scope.row.days ===-1" style="color: red;">已过期</i>
+          <i v-else-if="scope.row.isNearExpiry"  style="color: red;">剩余 {{ scope.row.days }} 天</i>
+          <i v-else class="el-icon-success" style="color: green;">剩余{{ scope.row.days }}天</i>
         </template>
       </el-table-column>
       <!-- 库存告警列 -->
-      <el-table-column label="库存告警" width="100">
+      <el-table-column label="库存告警" width="100"  align="center">
         <template slot-scope="scope">
-          <i v-if="scope.row.isLowStock" class="el-icon-warning" style="color: red;"></i>
-          <i v-else class="el-icon-success" style="color: green;"></i>
+          <i v-if="scope.row.isLowStock" class="el-icon-warning" style="color: red; font-size: 24px;" ></i>
+          <i v-else class="el-icon-success" style="color: green; font-size: 24px;"></i>
         </template>
       </el-table-column>
       <el-table-column prop="name" label="物品名" width="180">
@@ -273,6 +274,7 @@ export default {
       currentRow:{},
       tempUser:{},
       addNum:"",
+      days:'',
       fileList:[],
 
 
